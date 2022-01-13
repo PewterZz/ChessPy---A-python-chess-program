@@ -1,2 +1,2 @@
-# ChessPy---A-python-chess-program
+# ChessPy
 A python chess program
