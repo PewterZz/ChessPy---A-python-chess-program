@@ -10,10 +10,12 @@ Then the program should immediately start with a starting screen.
   
 ![](Example/Startpage.PNG)
   
-Once youve launched the game and gone throught the starting screen, it should look like this  
+Once youve launched the game and gone throught the starting screen, it should look like this   
+
 ![](Example/game.PNG)  
   
 Moving around in the game requires you to left click on a piece and then right click on the red dots.  
 Once you do that the goal is to check mate the enemy king however way possible.  
-Goodluck  
+Goodluck   
+
 ![](Example/chec.PNG)
