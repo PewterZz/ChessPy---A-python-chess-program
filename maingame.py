@@ -9,6 +9,7 @@ game_field = (60, 60, 505, 505)
 
 
 def game_window():
+    # puts all the board sprites along with the logo and madeby and the other pieces
     win.blit(p.chessboard, (0, 0))
     win.blit(p.chesspylogo, (230,-25))
     win.blit(p.madeby,(350,580))
@@ -36,13 +37,15 @@ def main():
     global b
     color = "White"
     turn = 1
-
+    
+    # Chessboard object being made
     b = bo.Chessboard(8,8)
     clock = pygame.time.Clock()
     king = -1
     condition = 1
     while True:
-
+        
+        # used to define the tickrate which determines the fps
         clock.tick(60)
         game_window()
 
@@ -71,11 +74,13 @@ def main():
 
             if k.type == pygame.MOUSEBUTTONDOWN:
                 click = pygame.mouse.get_pressed()
+                # If click[2] is right click in pygame documentation
                 if click[2]:
                     pos = pygame.mouse.get_pos()
                     try:
                         i, j = select(pos)
                         if i != g or j != d:
+                            # moves the pieces
                             turn, color, king, condition = b.do_move_chesspiece((d, g), (j, i), turn, color, win)
                         else:
                             pass
@@ -87,6 +92,7 @@ def main():
                         continue
                     except UnboundLocalError:
                         continue
+        # used to display other sprites
         if king == 1:
             win.blit(check, (200,565))
         if color == "White":
@@ -97,17 +103,20 @@ def main():
         win.blit(text, (490, 30))
         pygame.display.update()
         if condition == 0:
+            # the end of the game once the king is checkmated
             endgame = font.render("Checkmate", True, white)
             win.blit(pygame.transform.scale(endgame, (500,300)), (60,200))
             pygame.display.update()
+            # delay
             time.sleep(5)
             quit()
             break
 
-
+# dimensions of the window
 width = 626
 height = 626
 
+# loading up some sprites
 check = pygame.transform.scale(pygame.image.load(os.path.join("Sprites","check.png")), (90, 60))
 blackturn = pygame.transform.scale(pygame.image.load(os.path.join("Sprites","blacks-turn.png")), (200, 38))
 whiteturn = pygame.transform.scale(pygame.image.load(os.path.join("Sprites","whites-turn.png")), (200, 38))
@@ -120,6 +129,7 @@ white = (255, 255, 255)
 pygame.init()
 font = pygame.font.Font('freesansbold.ttf', 16)
 
+#starting screen for the program
 while True:
     win.blit(p.woodboard, (0,0))
     win.blit(pygame.transform.scale(p.chesspylogo,(650,490)), (0,0))
