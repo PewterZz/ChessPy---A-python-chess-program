@@ -34,6 +34,7 @@ for piece in white:
 
 
 class ChessPieces:
+    # index used to reference each piece later on
     index = -1
     game_field = (60, 60, 505, 505)
     start_x_pos = game_field[0]
@@ -44,7 +45,9 @@ class ChessPieces:
         self.column = column
         self.color = color
         self.all_possible_movements_list = []
+        # self.pawn is true when a pawn is chosen subsequently the same for self.king if a king is chosen
         self.pawn = False
+        # self.selected_piece is true when a piece is selected other than that all others that are not should be false
         self.selected_piece = False
         self.king = False
 
@@ -89,7 +92,8 @@ class ChessPieces:
 
 class Bishop(ChessPieces):
     index = 0
-
+    
+    # move_valid and all other move valids later on are all logical operations to tell the movement set of a piece, which is then put into a list
     def move_valid(self, board):
         rows = self.row
         columns = self.column
