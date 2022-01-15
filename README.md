@@ -9,3 +9,6 @@ All you need to do is run the maingame code in a folder with all the other modul
 Then the program should immediately start with a starting screen.
   
 ![](Example/Startpage.PNG)
+  
+Once youve launched the game and gone throught the starting screen, it should look like this  
+![](Example/code3.PNG)
