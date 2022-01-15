@@ -60,20 +60,22 @@ class Chessboard:
         if self.board[rows][columns] != 0:
             # turns singular piece in column and rows as selected
             self.board[rows][columns].selected_piece = True
-
+    
+    # updates the possible moves depending on the new position of the piece
     def updater(self):
         for i in range(self.rows):
             for j in range(self.columns):
                 if self.board[i][j] != 0:
                     self.board[i][j].possible_moves(self.board)
 
-
+    # resets the state of selected piece on all other objects in the board
     def reset(self):
         for i in range(self.rows):
             for j in range(self.columns):
                 if self.board[i][j] != 0:
                     self.board[i][j].selected_piece = False
 
+    #returns the positions of the two kings on a list
     def return_king_pos(self):
         Dboard = self.board[:]
         king_pos = []
@@ -86,13 +88,16 @@ class Chessboard:
                     continue
         return king_pos
 
-
+    #main function to move the chess pieces
     def do_move_chesspiece(self, org, end, turn, color, win):
         self.updater()
+        # condition is used to tell us the amount of kings left in the board which if 0 means only one king is left and it will end the game soon after
         condition = 1
         cBoard = self.board[:]
         try:
             king = 0
+            # 4 conditions need to be met in order for this to accept
+            # It needs to be odd, the color needs to be the same as the piece color, the ending position is in the move list and not the same as the original position
             if turn % 2 != 0 and color == x.get_color(self.board[org[0]][org[1]]):
                 if (end[1],end[0]) in self.board[org[0]][org[1]].all_possible_movements_list and (org[0], org[1]) != (end[0], end[1]):
                     print('White Moved')
@@ -108,6 +113,7 @@ class Chessboard:
                         king_pos = self.return_king_pos()
                         try:
                             if king_pos[0] in self.board[trueend[0]][trueend[1]].all_possible_movements_list or king_pos[1] in self.board[trueend[0]][trueend[1]].all_possible_movements_list:
+                                # king is defined as 1 to tell me if there is a king in the current move list or not.
                                 king = 1
                             else:
                                 king = 0
